@@ -37,7 +37,7 @@ The dataset used in this paper is the [Kvasir-Capsule](https://datasets.simula.n
 
 The model itself is built with the following code (corresponding to the architecture presented in the figure above): 
 
-```
+```python
 base_model = repvit.RepViT_M11(input_shape = (224, 224, 3), num_classes = 0)
 top = GlobalAveragePooling2D()(base_model.output)
 #top = base_model.output
@@ -60,7 +60,7 @@ Here, you can change the base model (```base_model = repvit.RepViT_M11(input_sha
 
 ## Training, testing and saving the model(s)
 The training and testing of the model is straightforward and is presented below: 
-```
+```python
 num_epochs = 15
 K.clear_session()
 history = model.fit(train_data, steps_per_epoch=train_steps_per_epoch,
@@ -68,7 +68,7 @@ history = model.fit(train_data, steps_per_epoch=train_steps_per_epoch,
                     epochs=num_epochs)
 ```
 
-```
+```python
 print("Checking on testing data: ")
 predicted = np.argmax(model.predict(x=test_data, steps=test_steps_per_epoch),axis=1)
 
@@ -89,7 +89,7 @@ print("-"*100)
 ```
 
 The models can be saved through the TFlite converter. The default conversion (with no quantization) can be done as follows: 
-```
+```python
 converter = tf.lite.TFLiteConverter.from_keras_model(model)
 
 tflite_model = converter.convert()
@@ -103,7 +103,7 @@ print("-"*100)
 ```
 
 To quantize to float-16: 
-```
+```python
 converter.optimizations = [tf.lite.Optimize.DEFAULT]
 converter.target_spec.supported_types = [tf.float16]
 
@@ -118,7 +118,7 @@ print("-"*100)
 ```
 
 To quantize to int-8, representative data must be used: 
-```
+```python
 def representative_data_gen():
     for i in range(100):
         image, _ = train_data.next()
@@ -143,7 +143,7 @@ print("-"*100)
 
 ## Quantization-aware training (QAT)
 QAT can be performed by cloning the model using built-in keras functions. In particular, before the model is ready to be re-trained, the following lines of code are necessary:
-```
+```python
 def apply_quantization(layer):
         if isinstance(layer, tf.keras.layers.Conv2D) or isinstance(layer, tf.keras.layers.Dense):
             return tfmot.quantization.keras.quantize_annotate_layer(layer)
@@ -155,7 +155,7 @@ annotated_model = tf.keras.models.clone_model(
 )
 ```
 Once the model has been cloned and annotated, it can be re-trained and converted to .tflite. 
-```
+```python
 annotated_model.compile(optimizer = optimizer, loss='categorical_crossentropy', metrics=['accuracy', F1_Score])
 
 
@@ -181,7 +181,7 @@ with open(tflite_model_path, 'wb') as f:
 
 ## Testing the performance of the models
 Models can be tested in a variety of different ways. We will, however, just look at the accuracy and F1-score for the purposes of this demonstration. Once the models have been saved to a particular directory (as .tflite files), we can test them with the following function: 
-```
+```python
 def evaluate_tflite_model_metrics(interpreter, test_data):
     input_index = interpreter.get_input_details()[0]['index']
     output_index = interpreter.get_output_details()[0]['index']
@@ -220,7 +220,7 @@ def evaluate_tflite_model_metrics(interpreter, test_data):
 ```
 
 The .tflite models have to be loaded in (and interpreted) to be able to get the performance metrics of the model. 
-```
+```python
 test_data = "path/to/your/test/data/"
 interpreter = tf.lite.Interpreter(model_path= "/path/to/your/tflite/model")
 interpreter.allocate_tensors()
@@ -229,3 +229,9 @@ accuracy, f1 = evaluate_tflite_model_metrics(interpreter, test_data)
 ```
 
 The code in its full-form can be found through ```model_preparation.py``` and ```model_testing.py```. 
+
+If you found our work useful or helpful for your own research, please consider citing us using the below: 
+- ## BibTeX:
+```
+
+```
