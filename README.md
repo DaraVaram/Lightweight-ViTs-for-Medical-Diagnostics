@@ -5,3 +5,4 @@ This  repo contains the necessary code and instructions for developing quantized
 This is the official Keras implemntation of our paper, **"On-Edge Deployment of Vision Transformers for Medical
 Diagnostics: A Study on the Kvasir-Capsule Dataset,"** published in MDPI Applied Sciences (accessible through _____).
 
+![alt text]([http://url/to/img.png](https://github.com/DaraVaram/Mobile-ViT-Kvasir/blob/main/Pipeline.jpg)
