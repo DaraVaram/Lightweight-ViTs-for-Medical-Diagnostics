@@ -231,7 +231,7 @@ accuracy, f1 = evaluate_tflite_model_metrics(interpreter, test_data)
 The code in its full-form can be found through ```model_preparation.py``` and ```model_testing.py```. 
 
 If you found our work useful or helpful for your own research, please consider citing us using the below: 
-- ## BibTeX:
+- ### BibTeX:
 ```
 
 ```
