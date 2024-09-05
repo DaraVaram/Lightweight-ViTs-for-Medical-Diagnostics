@@ -230,6 +230,10 @@ accuracy, f1 = evaluate_tflite_model_metrics(interpreter, test_data)
 
 The code in its full-form can be found through ```model_preparation.py``` and ```model_testing.py```. 
 
+## Further remarks
+Certain parameters in the code have been ommitted for brevity. In particular, we have not included any code related to hyper-parameter tuning or K-fold training, but we recommend researchers to do so for the sake of getting optimal results. This is intended as a foundation for building and running basic quantization for ViT-based models, although it can also further be expanded to include non-ViT transfer learning architectures as well. The only difference realistically would be the base_model parameter.  
+
+## Citation and reaching out
 If you found our work useful or helpful for your own research, please consider citing us using the below: 
 - ### BibTeX:
 ```
