@@ -240,6 +240,8 @@ If you are interested in a demo mobile application that these quantized models c
 If you found our work useful or helpful for your own research, please consider citing us using the below: 
 - ### BibTeX:
 
+
+```
 @Article{app14188115,
 AUTHOR = {Varam, Dara and Khalil, Lujain and Shanableh, Tamer},
 TITLE = {On-Edge Deployment of Vision Transformers for Medical Diagnostics Using the Kvasir-Capsule Dataset},
@@ -253,8 +255,6 @@ ISSN = {2076-3417},
 ABSTRACT = {This paper aims to explore the possibility of utilizing vision transformers (ViTs) for on-edge medical diagnostics by experimenting with the Kvasir-Capsule image classification dataset, a large-scale image dataset of gastrointestinal diseases. Quantization techniques made available through TensorFlow Lite (TFLite), including post-training float-16 (F16) quantization and quantization-aware training (QAT), are applied to achieve reductions in model size, without compromising performance. The seven ViT models selected for this study are EfficientFormerV2S2, EfficientViT_B0, EfficientViT_M4, MobileViT_V2_050, MobileViT_V2_100, MobileViT_V2_175, and RepViT_M11. Three metrics are considered when analyzing a model: (i) F1-score, (ii) model size, and (iii) performance-to-size ratio, where performance is the F1-score and size is the model size in megabytes (MB). In terms of F1-score, we show that MobileViT_V2_175 with F16 quantization outperforms all other models with an F1-score of 0.9534. On the other hand, MobileViT_V2_050 trained using QAT was scaled down to a model size of 1.70 MB, making it the smallest model amongst the variations this paper examined. MobileViT_V2_050 also achieved the highest performance-to-size ratio of 41.25. Despite preferring smaller models for latency and memory concerns, medical diagnostics cannot afford poor-performing models. We conclude that MobileViT_V2_175 with F16 quantization is our best-performing model, with a small size of 27.47 MB, providing a benchmark for lightweight models on the Kvasir-Capsule dataset.},
 DOI = {10.3390/app14188115}
 }
-```
-
 ```
 
 If you have any questions, please feel free to reach out to me through email (b00081313@alumni.aus.edu) or by connecting with me on [LinkedIn](www.linkedin.com/in/dara-varam). 
